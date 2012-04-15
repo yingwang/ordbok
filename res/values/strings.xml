@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Swedish - English Dictionary</string>
+    <string name="app_name">Folkets Lexikon</string>
+    <string name="Ord"></string>
+    <string name="OK">Lookup</string>
+    <string name="Uttal">Uttal</string>
+    <string name="TextView"></string>
+    <string name="WebView"></string>
+    <string name="about_title">Folkets Lexikon</string>
+    <string name="about_text">This English-Swedish dictionary belongs to the people and is expanded and improved by us all. You can give your contribution by answering some questions on the website. (http://folkets-lexikon.csc.kth.se/folkets/folkets.html) The dictionary is based on the Lexin Swedish-English dictionary.</string>
+</resources>

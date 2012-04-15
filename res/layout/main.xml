@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#1133B5E5"
+        android:orientation="horizontal" >
+
+<!--         <Button -->
+<!--             android:id="@+id/ButtonOK" -->
+<!--             android:layout_width="40dp" -->
+<!--             android:layout_height="40dp" -->
+<!--             android:layout_margin="2dp" -->
+<!--             android:background="@drawable/search" -->
+<!--             android:textColor="#000000" /> -->
+        
+
+        <EditText
+            android:id="@+id/EditTextOrd"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:inputType="text"
+            android:singleLine="true"
+            android:text="@string/Ord"
+            android:layout_weight="1">
+        </EditText>
+
+
+
+        <ImageButton
+            android:id="@+id/ButtonClear"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/clear" android:layout_weight="0"/>
+        
+         <ImageButton
+            android:id="@+id/ButtonOK"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_weight="0"
+            android:src="@drawable/search" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/TextViewText"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginBottom="0dip"
+        android:layout_marginLeft="4dip"
+        android:layout_marginRight="4dip"
+        android:layout_marginTop="0px"
+        android:background="#1199CC00"
+        android:inputType="textMultiLine"
+        android:maxLines="26"
+        android:scrollbars="vertical"
+        android:text="@string/TextView"
+        android:textColor="#000000" >
+    </TextView>
+
+</LinearLayout>
