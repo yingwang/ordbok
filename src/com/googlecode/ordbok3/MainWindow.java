@@ -8,6 +8,8 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 
+import com.googlecode.ordbok3.log.ordbokLog;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -39,6 +41,10 @@ public class MainWindow extends Activity implements OnClickListener {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		// initialize ordbokLog
+		ordbokLog.initialize(this);
+		
 		setContentView(R.layout.main);
 		editTextOrd = (EditText) findViewById(R.id.EditTextOrd);
 		buttonOK = (ImageButton) findViewById(R.id.ButtonOK);
@@ -50,10 +56,18 @@ public class MainWindow extends Activity implements OnClickListener {
 		//webViewText = (WebView) findViewById(R.id.WebViewText);
 		buttonOK.setOnClickListener(this);
 		buttonClear.setOnClickListener(this);
+
 		//buttonUttal.setOnClickListener(this);
 		//buttonUttal.setEnabled(false);
 
 	}
+	
+	@Override
+	protected void onDestroy() 
+	{
+		ordbokLog.uninitialize();
+		super.onDestroy();
+	};
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
