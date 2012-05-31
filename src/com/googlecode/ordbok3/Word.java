@@ -118,6 +118,19 @@ public class Word {
 	public Word(){
 	}
 	
+	public Word copy()
+	{
+		Word copy = new Word();
+		copy.lang = lang;
+		copy.phoneticSoundFile = phoneticSoundFile;
+		copy.phoneticValue = phoneticValue;
+		copy.translation = translation;
+		copy.wordClass = wordClass;
+		copy.wordContent = wordContent;
+		copy.wordValue = wordValue;
+		return copy;
+	}
+	
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
 		sb.append(""+getWordValue()+" " +"<font color='purple'>  "+" "+getLang()+"</font><font color='blue'>  "+getWordClass()+"</font></h3>");
