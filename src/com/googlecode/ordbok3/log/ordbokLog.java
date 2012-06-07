@@ -11,7 +11,7 @@ import android.content.Context;
 import android.os.Environment;
 import android.util.Log;
 
-public class ordbokLog
+public class OrdbokLog
 {
 	// log level enum
 	private static final int ERROR = 0;
@@ -42,9 +42,9 @@ public class ordbokLog
 	private static FileWriter sFile = null;
 	
 	
-	public static void initialize(Context AsContext)
+	public static void initialize(Context sAContext)
 	{
-		sContext = AsContext;
+		sContext = sAContext;
 		snLogLevel = sContext.getResources().getInteger(R.integer.logLevel);
 		snLogToDevice = sContext.getResources().getInteger(
 		        R.integer.logToDevice);

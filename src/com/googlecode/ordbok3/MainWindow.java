@@ -8,7 +8,9 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 
-import com.googlecode.ordbok3.log.ordbokLog;
+import com.googlecode.ordbok3.feedParser.FeedParser;
+import com.googlecode.ordbok3.log.OrdbokLog;
+import com.googlecode.ordbok3.Word;
 
 import android.app.Activity;
 import android.content.Context;
@@ -43,7 +45,7 @@ public class MainWindow extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		
 		// initialize ordbokLog
-		ordbokLog.initialize(this);
+		OrdbokLog.initialize(this);
 		
 		setContentView(R.layout.main);
 		editTextOrd = (EditText) findViewById(R.id.EditTextOrd);
@@ -65,7 +67,7 @@ public class MainWindow extends Activity implements OnClickListener {
 	@Override
 	protected void onDestroy() 
 	{
-		ordbokLog.uninitialize();
+		OrdbokLog.uninitialize();
 		super.onDestroy();
 	};
 
@@ -103,8 +105,11 @@ public class MainWindow extends Activity implements OnClickListener {
 				imm.hideSoftInputFromWindow(textViewText.getWindowToken(), 0);
 				break;
 			case R.id.ButtonClear:
-				editTextOrd.clearComposingText();
-				editTextOrd.getText().clear();
+				// test code 
+				FeedParser parser = new FeedParser();
+				parser.parse();
+//				editTextOrd.clearComposingText();
+//				editTextOrd.getText().clear();
 				break;
 			default:
 				break;
@@ -193,7 +198,16 @@ public class MainWindow extends Activity implements OnClickListener {
 			ArrayList<Word> words = new ArrayList<Word>();
 			Word word=new Word();
 			
+			
 			String strContents[] = content.split("\n");
+			
+			// print the final formated content to log
+			for (String line : strContents)
+            {
+	            OrdbokLog.i(LOG_TAG, line);
+            }
+			
+			
 			for (int i=0;i<strContents.length;i++)
 			{
 				//System.out.println(i+": "+strContents[i]);

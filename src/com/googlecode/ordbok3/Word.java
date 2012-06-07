@@ -106,7 +106,8 @@ public class Word {
 	private String phoneticValue="";
 	private String phoneticSoundFile="";
 	private String wordContent="";
-	
+
+
 	public String getWordContent() {
 		return wordContent;
 	}
