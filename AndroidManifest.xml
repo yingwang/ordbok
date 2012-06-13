@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.googlecode.ordbok3.About"
+            android:name=".About"
             android:label="@string/about_title"
             android:theme="@android:style/Theme.Dialog" >
         </activity>

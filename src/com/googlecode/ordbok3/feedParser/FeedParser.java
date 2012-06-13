@@ -159,7 +159,7 @@ public class FeedParser
 	        + "</grammar>" + "</word>" + "</node>";
 	static final String ksNode = "node";
 
-	public List<Word> parse()
+	public List<Word> parse(String sAXml)
 	{
 		final Word currentWord = new Word();
 		RootElement root = new RootElement(ksNode);
@@ -281,7 +281,8 @@ public class FeedParser
 
 		try
 		{
-			Xml.parse(ksTestXml, root.getContentHandler());
+			
+			Xml.parse(correctXmlFormat(sAXml), root.getContentHandler());
 			// Xml.parse(this.getInputStream(), Xml.Encoding.UTF_8,
 			// root.getContentHandler());
 		}
@@ -291,4 +292,13 @@ public class FeedParser
 		}
 		return Words;
 	}
+	
+	private String correctXmlFormat(String sARawXml)
+    {
+	    String result = "<node>" + sARawXml + "</node>";
+	    result = result.replace(",", "");
+	    result = result.replace("\\\"", "\"");
+	    
+	    return result;
+    }
 }

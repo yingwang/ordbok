@@ -106,10 +106,8 @@ public class MainWindow extends Activity implements OnClickListener {
 				break;
 			case R.id.ButtonClear:
 				// test code 
-				FeedParser parser = new FeedParser();
-				parser.parse();
-//				editTextOrd.clearComposingText();
-//				editTextOrd.getText().clear();
+				editTextOrd.clearComposingText();
+				editTextOrd.getText().clear();
 				break;
 			default:
 				break;
@@ -165,6 +163,7 @@ public class MainWindow extends Activity implements OnClickListener {
 		        content+=s;
 			}
 		    //System.out.println(content);
+			OrdbokLog.i(LOG_TAG, "raw content" + content);
 			
 			
 			if ((!content.contains("<"))||(!content.contains(">"))) 
@@ -173,6 +172,12 @@ public class MainWindow extends Activity implements OnClickListener {
 				return;
 			}
 			content = content.substring(content.indexOf("<"),content.lastIndexOf(">")+1);
+			
+			OrdbokLog.i(LOG_TAG, "xml content" + content);
+			
+			FeedParser parser = new FeedParser();
+			parser.parse(content);
+
 			
 			content = content.replace("&amp;quot;", "");
 			content = content.replace("origin=lexin", "");
@@ -185,7 +190,7 @@ public class MainWindow extends Activity implements OnClickListener {
 			content = content.replace("Ã¤", "ä");//&aring;
 			content = content.replace("Ã¥", "å");//�?		
 			content = content.replace("Ã¶", "ö");
-			//content = content.replaceAll("�?, "�?;//�?		
+			//content = content.replaceAll("�?, "�?");//�?		
 			content = content.replace("\\\"", "");
 			content = content.replace("&;#39;", "'");
 			content = content.replace(">", ">\n");
