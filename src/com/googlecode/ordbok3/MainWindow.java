@@ -8,6 +8,10 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 
+import com.googlecode.ordbok3.feedParser.FeedParser;
+import com.googlecode.ordbok3.log.OrdbokLog;
+import com.googlecode.ordbok3.Word;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -39,6 +43,10 @@ public class MainWindow extends Activity implements OnClickListener {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		// initialize ordbokLog
+		OrdbokLog.initialize(this);
+		
 		setContentView(R.layout.main);
 		editTextOrd = (EditText) findViewById(R.id.EditTextOrd);
 		buttonOK = (ImageButton) findViewById(R.id.ButtonOK);
@@ -50,10 +58,18 @@ public class MainWindow extends Activity implements OnClickListener {
 		//webViewText = (WebView) findViewById(R.id.WebViewText);
 		buttonOK.setOnClickListener(this);
 		buttonClear.setOnClickListener(this);
+
 		//buttonUttal.setOnClickListener(this);
 		//buttonUttal.setEnabled(false);
 
 	}
+	
+	@Override
+	protected void onDestroy() 
+	{
+		OrdbokLog.uninitialize();
+		super.onDestroy();
+	};
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -89,6 +105,7 @@ public class MainWindow extends Activity implements OnClickListener {
 				imm.hideSoftInputFromWindow(textViewText.getWindowToken(), 0);
 				break;
 			case R.id.ButtonClear:
+				// test code 
 				editTextOrd.clearComposingText();
 				editTextOrd.getText().clear();
 				break;
@@ -146,6 +163,7 @@ public class MainWindow extends Activity implements OnClickListener {
 		        content+=s;
 			}
 		    //System.out.println(content);
+			OrdbokLog.i(LOG_TAG, "raw content" + content);
 			
 			
 			if ((!content.contains("<"))||(!content.contains(">"))) 
@@ -154,6 +172,12 @@ public class MainWindow extends Activity implements OnClickListener {
 				return;
 			}
 			content = content.substring(content.indexOf("<"),content.lastIndexOf(">")+1);
+			
+			OrdbokLog.i(LOG_TAG, "xml content" + content);
+			
+			FeedParser parser = new FeedParser();
+			parser.parse(content);
+
 			
 			content = content.replace("&amp;quot;", "");
 			content = content.replace("origin=lexin", "");
@@ -166,7 +190,7 @@ public class MainWindow extends Activity implements OnClickListener {
 			content = content.replace("Ã¤", "ä");//&aring;
 			content = content.replace("Ã¥", "å");//�?		
 			content = content.replace("Ã¶", "ö");
-			//content = content.replaceAll("�?, "�?;//�?		
+			//content = content.replaceAll("�?, "�?");//�?		
 			content = content.replace("\\\"", "");
 			content = content.replace("&;#39;", "'");
 			content = content.replace(">", ">\n");
@@ -179,7 +203,16 @@ public class MainWindow extends Activity implements OnClickListener {
 			ArrayList<Word> words = new ArrayList<Word>();
 			Word word=new Word();
 			
+			
 			String strContents[] = content.split("\n");
+			
+			// print the final formated content to log
+			for (String line : strContents)
+            {
+	            OrdbokLog.i(LOG_TAG, line);
+            }
+			
+			
 			for (int i=0;i<strContents.length;i++)
 			{
 				//System.out.println(i+": "+strContents[i]);

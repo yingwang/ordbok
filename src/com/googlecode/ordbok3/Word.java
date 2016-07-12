@@ -106,7 +106,8 @@ public class Word {
 	private String phoneticValue="";
 	private String phoneticSoundFile="";
 	private String wordContent="";
-	
+
+
 	public String getWordContent() {
 		return wordContent;
 	}
@@ -116,6 +117,19 @@ public class Word {
 	}
 
 	public Word(){
+	}
+	
+	public Word copy()
+	{
+		Word copy = new Word();
+		copy.lang = lang;
+		copy.phoneticSoundFile = phoneticSoundFile;
+		copy.phoneticValue = phoneticValue;
+		copy.translation = translation;
+		copy.wordClass = wordClass;
+		copy.wordContent = wordContent;
+		copy.wordValue = wordValue;
+		return copy;
 	}
 	
 	public String toString() {

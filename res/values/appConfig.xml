@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+    	Not log to phone 	0
+    	log to phone memory	1
+    	log to sd card		2
+      -->
+	<integer name="logToDevice">2</integer>
+	<!--
+		Log lever
+		Error 0
+		Debug 1
+		Info  2  
+	-->
+	<integer name="logLevel">2</integer>    
+</resources>
